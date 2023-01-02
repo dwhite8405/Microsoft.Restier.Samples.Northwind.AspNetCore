@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Microsoft.Restier.Samples.Northwind.AspNetCore": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56488;http://localhost:56489"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-image: gitpod/workspace-dotnet
+image: gitpod/workspace-dotnet-lts
 
 tasks:
   - name: Restore & Build

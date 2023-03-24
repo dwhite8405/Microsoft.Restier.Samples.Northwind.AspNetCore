@@ -26,3 +26,4 @@ You should see:
 
 Connect your browser to either of those two URLs to view the OData service.
 
+Credit to @jpwhite3 for providing the Northwind database in SQLite format at https://github.com/jpwhite3/northwind-SQLite3

@@ -59,7 +59,10 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
                 {
 
                     routeServices
-                        .AddEFCoreProviderServices<NorthwindContext>((services, options) => options.UseSqlServer(Configuration.GetConnectionString("NorthwindEntities")))
+                        .AddEFCoreProviderServices<NorthwindContext>((services, options) =>
+                        {
+                            options.UseSqlite(Configuration.GetConnectionString("NorthwindEntities"));
+                        })
                         .AddSingleton(new ODataValidationSettings
                         {
                             //MaxTop = 5,

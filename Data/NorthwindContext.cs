@@ -287,8 +287,8 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
 
             modelBuilder.Entity<Region>(entity =>
             {
-                entity.HasKey(e => e.RegionId)
-                    .IsClustered(false);
+                entity.HasKey(e => e.RegionId);
+                    //.IsClustered(false);
 
                 entity.ToTable("Region");
 
@@ -348,8 +348,8 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
 
             modelBuilder.Entity<Territory>(entity =>
             {
-                entity.HasKey(e => e.TerritoryId)
-                    .IsClustered(false);
+                entity.HasKey(e => e.TerritoryId);
+                    //.IsClustered(false);
 
                 entity.Property(e => e.TerritoryId)
                     .HasMaxLength(20)

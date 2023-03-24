@@ -290,7 +290,7 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
                 entity.HasKey(e => e.RegionId);
                     //.IsClustered(false);
 
-                entity.ToTable("Region");
+                entity.ToTable("Regions");
 
                 entity.Property(e => e.RegionId)
                     .ValueGeneratedNever()

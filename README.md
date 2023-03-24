@@ -6,6 +6,11 @@ OData is a queryable REST service specification. https://www.odata.org/.
 
 To run this locally, make sure you have the .NET SDK version 6.0 installed. This is the `dotnet-sdk-6.0` package on Debian-based distros. 
 
+If you're running on Windows, then you need to edit appsettings.json and substitute the slashes in the
+database filename to double backslashes, i.e.::
+
+        "NorthwindEntities": "Data Source=.\\Database\\Northwind.db;Mode=ReadOnly;"
+
 Then:
 
     $ dotnet build

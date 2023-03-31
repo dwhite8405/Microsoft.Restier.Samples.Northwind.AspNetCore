@@ -4,6 +4,7 @@ using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,13 +49,13 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
                 options.AddPolicy(name: LocalhostOrigin,
                      policy =>
                      {
-                         policy.WithOrigins("http://localhost:3000");
+                         policy.WithOrigins("http://tygrid.com");
                      });
             });
             services.AddRestier((builder) =>
             {
                 // This delegate is executed after OData is added to the container.
-                // Add you replacement services here.
+                // Add you replacement services here. 
                 builder.AddRestierApi<NorthwindApi>(routeServices =>
                 {
 
@@ -82,9 +83,18 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            } else
+            {
+                // This is used when we're being deployed behind a reverse proxy, such as
+                // nginx.
+                app.UseForwardedHeaders(new ForwardedHeadersOptions
+                {
+                    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+                });
             }
 
             app.UseCors(LocalhostOrigin);
@@ -98,7 +108,13 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
 
                 builder.MapRestier(builder =>
                 {
-                    builder.MapApiRoute<NorthwindApi>("ApiV1", "", true);
+                    if (env.IsDevelopment())
+                    {
+                        builder.MapApiRoute<NorthwindApi>("ApiV1", "", true);
+                    } else
+                    {
+                        builder.MapApiRoute<NorthwindApi>("ApiV1", "o/northwind", true);
+                    }
                 });
             });
         }

@@ -33,6 +33,34 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
+                    /*
+                    webBuilder.ConfigureKestrel(serverOptions =>
+                    {
+                        serverOptions.ConfigureEndpointDefaults(listenOptions =>
+                        {
+                            listenOptions.UseHttps(httpsOptions =>
+                            {
+                                // here you can configure SSL certificates and port numbers.
+                            });
+                        });
+                    }); */
+
+                    /* This is interesting. You can make this run faster and be
+                     * more secure by using Unix sockets. Linux only.
+                    
+                    webBuilder.ConfigureKestrel((context, serverOptions) =>
+                    {
+                        serverOptions.ListenUnixSocket("/run/northwind.sock");
+
+                        // there's also...
+                        serverOptions.UseSystemd(); 
+                    }); */
+
+                    webBuilder.ConfigureKestrel(serverOptions => {
+                       serverOptions.ListenLocalhost(5000);
+                    });
+
                 });
     }
 }

@@ -32,3 +32,8 @@ You should see:
 Connect your browser to either of those two URLs to view the OData service.
 
 Credit to @jpwhite3 for providing the Northwind database in SQLite format at https://github.com/jpwhite3/northwind-SQLite3
+
+# TODO
+
+Implement the changes here:
+https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-7.0&tabs=linux-ubuntu

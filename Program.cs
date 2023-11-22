@@ -58,7 +58,7 @@ namespace Microsoft.Restier.Samples.Northwind.AspNetCore
                     }); */
 
                     webBuilder.ConfigureKestrel(serverOptions => {
-                       serverOptions.ListenLocalhost(5000);
+                       serverOptions.ListenLocalhost(5002);
                     });
 
                 });
